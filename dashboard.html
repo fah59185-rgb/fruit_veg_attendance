@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>Admin Dashboard — Today</h2>
+<p><a class="btn btn-secondary" href="/admin/employees">Employees</a> <a class="btn btn-info" href="/admin/export">Export CSV</a></p>
+<h4>Stats</h4>
+<table class="table">
+  <thead><tr><th>Name</th><th>Ins</th><th>Outs</th></tr></thead>
+  <tbody>
+  {% for s in stats %}
+    <tr><td>{{s.name}}</td><td>{{s.ins}}</td><td>{{s.outs}}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h4>Today's Records</h4>
+<table class="table">
+  <thead><tr><th>Name</th><th>Action</th><th>Timestamp</th><th>Lat</th><th>Lon</th><th>Note</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr><td>{{r['name']}}</td><td>{{r['action']}}</td><td>{{r['timestamp']}}</td><td>{{r['lat']}}</td><td>{{r['lon']}}</td><td>{{r['note']}}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
