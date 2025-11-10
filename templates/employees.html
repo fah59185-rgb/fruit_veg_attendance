@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>Employees</h2>
+<form method="post" action="/admin/add_employee" class="mb-3">
+  <div class="row">
+    <div class="col"><input class="form-control" name="name" placeholder="Name"></div>
+    <div class="col"><input class="form-control" name="shift_start" placeholder="Shift start (HH:MM)"></div>
+    <div class="col"><input class="form-control" name="shift_end" placeholder="Shift end (HH:MM)"></div>
+    <div class="col"><button class="btn btn-success">Add</button></div>
+  </div>
+</form>
+
+<table class="table">
+  <thead><tr><th>Name</th><th>Shift</th><th>Link</th></tr></thead>
+  <tbody>
+  {% for e in emps %}
+    <tr><td>{{e['name']}}</td><td>{{e['shift_start']}} - {{e['shift_end']}}</td><td><a href="/link/{{e['token']}}" target="_blank">/link/{{e['token']}}</a></td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

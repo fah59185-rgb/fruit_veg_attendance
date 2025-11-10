@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>Attendance — {{emp.name}}</h2>
+<p>Shift: {{emp.shift_start}} - {{emp.shift_end}}</p>
+<form id="checkform" method="post">
+  <input type="hidden" name="lat" id="lat">
+  <input type="hidden" name="lon" id="lon">
+  <input type="hidden" name="action" id="action" value="IN">
+  <div class="mb-2">
+    <button type="button" class="btn btn-success" onclick="tryGeo('IN')">Check In</button>
+    <button type="button" class="btn btn-primary" onclick="tryGeo('OUT')">Check Out</button>
+  </div>
+  <div class="mb-2">
+    <input class="form-control" name="note" placeholder="Optional note (e.g., late reason)">
+  </div>
+</form>
+
+<h4>Recent History</h4>
+<table class="table">
+  <thead><tr><th>Action</th><th>Timestamp</th><th>Lat</th><th>Lon</th><th>Note</th></tr></thead>
+  <tbody>
+  {% for r in history %}
+    <tr><td>{{r['action']}}</td><td>{{r['timestamp']}}</td><td>{{r['lat']}}</td><td>{{r['lon']}}</td><td>{{r['note']}}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
